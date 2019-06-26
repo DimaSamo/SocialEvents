@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :events
+  resources :users, only: [:new, :create, :edit, :update] do
+    resources :events, only: [:index, :new, :create, :edit, :update, :show, :destroy]
+  end
   root 'users#welcome'
   get '/signup' => 'users#new'
   get '/login' => 'sessions#new'

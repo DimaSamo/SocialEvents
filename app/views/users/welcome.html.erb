@@ -4,4 +4,5 @@
     <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
     <input type=submit value='logout'>
     <% end %>
+    <%= link_to  "Create New Event", new_user_event_url(current_user.id) %>
 <%end%>

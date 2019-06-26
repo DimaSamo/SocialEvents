@@ -1,0 +1,17 @@
+<%= form_for( @user) do |f| %>
+    <div>
+    <%= f.label :user_name %>
+    <%=f.text_field :user_name, required: true%>
+    </div>
+
+    <div>
+    <%= f.label :password %>
+    <%=f.password_field :password, required: true%>
+    </div>
+
+    <div>
+    <%= f.label :password_confirmation %>
+    <%=f.password_field :password_confirmation, required: true%>
+    </div>
+    <%=f.submit "Sign up!"%>
+<% end %>

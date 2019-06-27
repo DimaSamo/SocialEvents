@@ -13,8 +13,17 @@ class EventsController < ApplicationController
     end
 
     def index
-        @events = User.find(params[:user_id]).events
-        #binding.pry
+        if params[:user_id]
+            if params[:rsvpd]
+                @events = User.find(params[:user_id]).rsvped_events
+                binding.pry
+            else
+                @events = User.find(params[:user_id]).events
+            end
+        else
+            @events = Event.all
+        end
+       # binding.pry
     end
 
     def show

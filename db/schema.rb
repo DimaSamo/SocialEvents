@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_27_012508) do
+ActiveRecord::Schema.define(version: 2019_06_27_045928) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_06_27_012508) do
     t.boolean "attending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "event_id"], name: "index_rsvps_on_user_id_and_event_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,5 +1,10 @@
 class SessionsController < ApplicationController
-    skip_before_action :require_login, only: [:new, :create]
+    skip_before_action :require_login, only: [:home, :new, :create]
+    
+    def home
+        binding.pry
+    end
+
     def new
         @user = User.new
     end
@@ -17,7 +22,7 @@ class SessionsController < ApplicationController
 
     def destroy
         session.delete :user_id
-        redirect_to login_path
+        redirect_to root_path
     end
 
 

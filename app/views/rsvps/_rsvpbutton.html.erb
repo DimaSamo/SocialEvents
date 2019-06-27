@@ -1,6 +1,12 @@
-<%= form_for( @rsvp ) do |f| %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.hidden_field :event_id, value: @event.id %>
-    <%= f.hidden_field :attending, value: true %>
-    <%=f.submit "RSVP"%>
-<% end %>
+<%if !rsvpd?(@event.id, current_user.id)%>
+    <%= form_for( @rsvp = Rsvp.find_or_create_by(user_id: current_user.id, event_id: @event.id) ) do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :event_id, value: @event.id %>
+        <%= f.hidden_field :attending, value: true %>
+        <%=f.submit "RSVP"%>
+    <% end %>
+<%else%>
+    <%@rsvp = Rsvp.find_by(user_id: current_user.id, event_id: @event.id)%>
+    <%= button_to  "CANCEL", @rsvp, { method: "delete" } %>
+<%end%>
+

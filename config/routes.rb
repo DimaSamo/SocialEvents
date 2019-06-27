@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   resources :rsvps
   resources :events do
-    resources :rsvps, only:[:create, :update]
+    resources :rsvps, only:[:create, :update, :destroy]
   end
   resources :users, only: [:new, :create, :edit, :update] do
     resources :events, only: [:index, :new, :create, :edit, :update, :show, :destroy]
   end
-  root 'users#welcome'
+  root 'sessions#home'
   get '/signup' => 'users#new'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

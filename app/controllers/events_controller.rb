@@ -16,7 +16,6 @@ class EventsController < ApplicationController
         if params[:user_id]
             if params[:rsvpd]
                 @events = User.find(params[:user_id]).rsvped_events
-                binding.pry
             else
                 @events = User.find(params[:user_id]).events
             end

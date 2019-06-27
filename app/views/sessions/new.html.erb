@@ -1,13 +1,15 @@
+<div class="center" align="center">
 <%= flash[:error]%>
 <%= form_for( @user, url: {controller: :sessions, action: "create"} ) do |f| %>
-    <div>
+    <div class="form-group">
     <%=f.label :user_name%>
     <%=f.text_field :user_name%>
     </div>
-    <div>
+    <div class="form-group">
     <%=f.label :password%>
     <%=f.password_field :password%>
     </div>
     <%=f.submit "Login" %>
 
 <% end %>
+</div>

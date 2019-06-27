@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :events do
     resources :rsvps, only:[:create, :update, :destroy]
   end
-  resources :users, only: [:new, :create, :edit, :update] do
+  resources :users, only: [:new, :create, :edit, :update, :show] do
     resources :events, only: [:index, :new, :create, :edit, :update, :show, :destroy]
   end
   root 'sessions#home'
@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'
+  get '/logout' => 'sessions#logoff'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

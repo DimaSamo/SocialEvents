@@ -1,3 +1,6 @@
 <h1><%= @event.title %></h1>
 <h2>Location: <%= @event.location %></h2>
 <p><%= @event.description %></p>
+<%= button_to "delete", {:controller => :events,:action => 'destroy', :id => @event.id }, :method => :delete %>
+
+<%= render "rsvps/rsvpbutton" %>

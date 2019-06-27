@@ -19,6 +19,12 @@ class EventsController < ApplicationController
 
     def show
         @event = Event.find(params[:id])
+        @rsvp = Rsvp.new
+    end
+
+    def destroy
+        Event.find(params[:id]).destroy
+        redirect_to user_events_path(current_user.id)
     end
 
 

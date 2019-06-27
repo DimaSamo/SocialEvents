@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :events
+  resources :rsvps
+  resources :events do
+    resources :rsvps, only:[:create, :update]
+  end
   resources :users, only: [:new, :create, :edit, :update] do
     resources :events, only: [:index, :new, :create, :edit, :update, :show, :destroy]
   end

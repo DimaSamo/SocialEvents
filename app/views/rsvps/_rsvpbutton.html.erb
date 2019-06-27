@@ -1,0 +1,6 @@
+<%= form_for( @rsvp ) do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :event_id, value: @event.id %>
+    <%= f.hidden_field :attending, value: true %>
+    <%=f.submit "RSVP"%>
+<% end %>

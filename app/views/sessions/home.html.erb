@@ -1,11 +1,21 @@
 <%if logged_in?%>
     <h2>Welcome Back <%=User.find(session[:user_id]).user_name.capitalize%>!</h2>
-    <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
-    <input type=submit value='logout'>
-    <% end %>
-    <%= link_to  "Create New Event", new_user_event_url(current_user.id) %>
-    <%= button_to  "My Events", user_events_path(current_user.id), method: :get%>
-    <%= button_to  "Events I'm Attending", user_events_path(current_user.id), method: :get, params: {rsvpd: true}%>
+    <div style ="display:flex;">
+        <%= button_to  "My Events", user_events_path(current_user.id), method: :get, class: "btn btn-primary"%>
+        <%= button_to  "Events I'm Attending", user_events_path(current_user.id), method: :get, params: {rsvpd: true}, class: "btn btn-primary"%>
+        <%= link_to  "Create New Event", new_user_event_url(current_user.id), class: "btn btn-success" %>
+ 
+        <%= link_to  "Logout", logout_path, class: "btn btn-danger" %>
+    </div>
+    <br>
+    <h2>Upcoming Events: </h2>
+    <ul class = "list-group">
+        <% @events.each do |event| %>
+        
+            <li class ="list-group-item"><%= link_to  event.title, event %>, Location: <%=event.location%>, <%=event.date.strftime("%A, %d %b %Y %l:%M %p")%></li>
+        <%end%>
+    </ul>
+
 <%else%>
     <%= button_to  "Login", login_path, method: :get, class: "btn btn-success"%>
     <%= button_to  "Sign Up", signup_path, method: :get, class: "btn btn-warning"%>

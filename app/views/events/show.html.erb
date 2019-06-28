@@ -4,3 +4,6 @@
 <p><%= @event.description %></p>
 <%= button_to "delete", {:controller => :events,:action => 'destroy', :id => @event.id }, :method => :delete %>
 <%= render partial: "rsvps/rsvpbutton1" %>
+<% if my_resource?(@event)%>
+<h1> YES</h1>
+<%end%>

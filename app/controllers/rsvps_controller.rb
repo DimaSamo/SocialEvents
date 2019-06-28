@@ -1,7 +1,7 @@
 class RsvpsController < ApplicationController
     def create
         @rsvp = Rsvp.new(rsvp_params)
-        binding.pry
+       # binding.pry
         @rsvp.save
     end
 

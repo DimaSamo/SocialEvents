@@ -1,4 +1,4 @@
-<h1>Create New Event</h1>
+<h1>Edit Event</h1>
 <%= form_for( @event) do |f| %>
 
     <%if @event.errors.any?%>
@@ -30,5 +30,5 @@
     <%= f.datetime_field :date, required: true, class: "form-control" %>
     </div>
     
-    <%=f.submit "Create Event", class: "btn btn-success"%>
+    <%=f.submit class: "btn btn-success"%>
 <% end %>

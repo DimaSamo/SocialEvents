@@ -14,4 +14,12 @@ module ApplicationHelper
     def current_user
         @current_user ||= User.find_by_id(session[:user_id])
     end
+
+    def my_resource?(resource)
+        if resource.user_id == current_user.id
+            return true
+        else
+            return false
+        end
+    end
 end

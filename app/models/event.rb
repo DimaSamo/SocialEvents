@@ -15,4 +15,8 @@ class Event < ApplicationRecord
     scope :upcoming, -> {where("date > ?", Time.zone.now)}
     # Ex:- scope :active, -> {where(:active => true)}
 
+    def self.ten_closest
+        Event.upcoming.order(date: :asc).limit(10)
+    end
+
 end

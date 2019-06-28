@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
     skip_before_action :require_login, only: [:home, :new, :create]
     
     def home
+        @events = Event.ten_closest
     end
 
     def new

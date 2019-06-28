@@ -1,7 +1,5 @@
-<h1>Social Events</h1>
-
 <%if logged_in?%>
-    Hello <%=User.find(session[:user_id]).user_name%>
+    <h2>Welcome Back <%=User.find(session[:user_id]).user_name.capitalize%>!</h2>
     <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
     <input type=submit value='logout'>
     <% end %>

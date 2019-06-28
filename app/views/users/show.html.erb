@@ -1,0 +1,13 @@
+<%if my_resource?(@user)%>
+    <h1>Your Profile:</h1>
+<%else%>
+    <h1><%=@user.first_name%>'s Profile:</h1>
+<%end%>
+<div>
+<h2>Name: <%=@user.first_name%> <%=@user.last_name%></h2>
+<p>Bio: </p>
+</div>
+<div>
+<h2>Attending Upcoming Events:</h2>
+    <%= render partial: "/events/eventlist", locals: {events: @user.rsvped_events.upcoming}%>
+</div>

@@ -1,7 +1,2 @@
 <h1>Events:</h1>
-    <ul class = "list-group">
-        <% @events.each do |event| %>
-        
-            <li class ="list-group-item"><%= link_to  event.title, event %>, Location: <%=event.location%>, <%=event.date.strftime("%A, %d %b %Y %l:%M %p")%></li>
-        <%end%>
-    </ul>
+<%= render partial: "eventlist", locals: {events: @events}%>

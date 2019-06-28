@@ -1,8 +1,8 @@
 class RsvpsController < ApplicationController
     def create
         @rsvp = Rsvp.new(rsvp_params)
-       # binding.pry
         @rsvp.save
+        redirect_to event_path(params[:rsvp][:event_id])
     end
 
     def update

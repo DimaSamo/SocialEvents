@@ -4,14 +4,14 @@
              <%= hidden_field_tag "rsvp[user_id]", @current_user.id %>
              <%= hidden_field_tag "rsvp[event_id]", @event.id %>
              <%= hidden_field_tag "rsvp[attending]", "true" %>
-             <%= submit_tag "RSVP" %>
+             <%= submit_tag "RSVP", class: "btn btn-success" %>
         <% end %>
 <%else%>
         <%= form_tag("/rsvps/#{Rsvp.find_by(user_id: current_user.id, event_id: @event.id).id}", method: :delete) do %>
              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
              <%= hidden_field_tag "rsvp[user_id]", @current_user.id %>
              <%= hidden_field_tag "rsvp[event_id]", @event.id %>
-             <%= submit_tag "Delete Rsvp" %>
+             <%= submit_tag "Delete Rsvp", class: "btn btn-danger" %>
         <% end %>
 <%end%>
 

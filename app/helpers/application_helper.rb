@@ -6,6 +6,7 @@ module ApplicationHelper
           redirect_to login_path
         end
     end
+    
 
     def logged_in?
         !!session[:user_id]
@@ -16,10 +17,18 @@ module ApplicationHelper
     end
 
     def my_resource?(resource)
-        if resource.user_id == current_user.id
-            return true
+        if !resource.is_a?(User)
+            if resource.user_id == current_user.id
+                return true
+            else
+                return false
+            end
         else
-            return false
+            if resource.id == current_user.id
+                return true
+            else
+                return false
+            end
         end
     end
 end

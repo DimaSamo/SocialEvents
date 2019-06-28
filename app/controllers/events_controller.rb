@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+    before_action :require_permission, only: [:edit]
     def new
         @event = Event.new
     end
@@ -49,4 +50,11 @@ class EventsController < ApplicationController
     def event_params
         params.require(:event).permit(:title, :description, :location, :date, :user_id)
     end
+
+    def require_permission
+        if current_user != Event.find(params[:id]).user
+          redirect_to event_path(params[:id]), :flash => {error: "Permission Denied"}
+          #Or do something else here
+        end
+      end
 end

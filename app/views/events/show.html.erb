@@ -1,3 +1,8 @@
+<%if flash[:error]%>
+    <div class="alert alert-danger" role="alert">
+    <%= flash[:error]%>
+    </div>
+<%end%>
 <h1><%= @event.title %></h1>
 <h2>Date: <%=@event.date.strftime("%b %e, %l:%M %p")%></h2>
 <h2>Location: <%= @event.location %></h2>

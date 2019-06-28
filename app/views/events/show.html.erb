@@ -18,7 +18,9 @@
   <div class="card card-body">
   <ul>
     <%@event.users.each do |user|%>
+        <%rsvp = user.rsvps.find_by(event_id: @event.id)%>
        <li> <%= link_to  "#{user.first_name} #{user.last_name}", user %> </li>
+       <%="Note - #{rsvp.note}"  if rsvp.note%>
     <%end%>
     </ul>
   </div>

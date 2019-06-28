@@ -1,6 +1,7 @@
 <%if !rsvpd?(@event.id, current_user.id)%>
         <%= form_tag("/rsvps", method: :create) do %>
              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+             <%= text_field_tag "rsvp[note]"%>
              <%= hidden_field_tag "rsvp[user_id]", @current_user.id %>
              <%= hidden_field_tag "rsvp[event_id]", @event.id %>
              <%= hidden_field_tag "rsvp[attending]", "true" %>

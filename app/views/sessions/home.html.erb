@@ -17,8 +17,10 @@
 <div style ="display:flex;">
     <%= button_to  "Login", login_path, method: :get, class: "btn btn-success"%>
     <div class="divider"> </div>
+    <%= link_to "Log In with Google", '/auth/google_oauth2', class: "btn btn-success"%>
+    <div class="divider"> </div>
     <%= button_to  "Sign Up", signup_path, method: :get, class: "btn btn-primary"%>
 
-    <%= link_to "Log In with Google", '/auth/google_oauth2' %>
+    
 </div>
 <%end%>

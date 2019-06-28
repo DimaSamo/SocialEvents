@@ -11,10 +11,11 @@ class User < ApplicationRecord
     def self.from_omniauth(auth)
         
         where(email: auth.info.email).first_or_initialize do |user|
-          binding.pry
+         # binding.pry
           user.user_name = auth.info.name
-          user.first_name = auth.first_name
-          user.last_name = auth.last_name
+          user.first_name = auth.info.first_name
+          user.last_name = auth.info.last_name
+         # binding.pry
           user.email = auth.info.email
           user.password = SecureRandom.hex
         end

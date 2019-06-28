@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :events, only: [:index, :new, :create, :edit, :update, :show, :destroy]
   end
   root 'sessions#home'
+  get '/auth/:provider/callback' => 'sessions#omniauth'
   get '/signup' => 'users#new'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

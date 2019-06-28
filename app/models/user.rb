@@ -7,8 +7,20 @@ class User < ApplicationRecord
     has_many :events
     has_many :rsvps
     has_many :rsvped_events, through: :rsvps, source: :event
+    
+    def self.from_omniauth(auth)
+        binding.pry
+        where(email: auth.info.email).first_or_initialize do |user|
+            
+          user.user_name = auth.info.name
+          user.email = auth.info.email
+          user.password = SecureRandom.hex
+        end
+     end
 
     def full_name
         "#{self.first_name} #{self.last_name}"
     end
+
+    
 end

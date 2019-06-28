@@ -15,13 +15,14 @@ class EventsController < ApplicationController
 
     def index
         if params[:user_id]
+            @user = User.find(params[:user_id])
             if params[:rsvpd]
                 @events = User.find(params[:user_id]).rsvped_events
             else
                 @events = User.find(params[:user_id]).events
             end
         else
-            @events = Event.all
+            @events = Event.upcoming.sorted
         end
        # binding.pry
     end
@@ -54,7 +55,6 @@ class EventsController < ApplicationController
     def require_permission
         if current_user != Event.find(params[:id]).user
           redirect_to event_path(params[:id]), :flash => {error: "Permission Denied"}
-          #Or do something else here
         end
-      end
+    end
 end

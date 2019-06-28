@@ -1,3 +1,8 @@
+<%if flash[:error]%>
+    <div class="alert alert-danger" role="alert">
+    <%= flash[:error]%>
+    </div>
+<%end%>
 <%if my_resource?(@user)%>
     <h1>Your Profile:</h1>
 <%else%>
@@ -5,9 +10,15 @@
 <%end%>
 <div>
 <h2>Name: <%=@user.first_name%> <%=@user.last_name%></h2>
-<p>Bio: </p>
+<h2>About <%=@user.first_name%>:</h2> <p><%=@user.bio%></p>
 </div>
 <div>
 <h2>Attending Upcoming Events:</h2>
     <%= render partial: "/events/eventlist", locals: {events: @user.rsvped_events.upcoming}%>
 </div>
+
+<%if my_resource?(@user)%>
+    <br>
+    <%= link_to  "Edit Profile", edit_user_path(@user), class: "btn btn-dark" %>
+    
+<%end%>

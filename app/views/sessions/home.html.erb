@@ -2,15 +2,21 @@
     <h2>Welcome Back <%=User.find(session[:user_id]).first_name.capitalize%>!</h2>
     <div style ="display:flex;">
         <%= button_to  "My Events", user_events_path(current_user.id), method: :get, class: "btn btn-primary"%>
+        <div class="divider"> </div>
         <%= button_to  "Events I'm Attending", user_events_path(current_user.id), method: :get, params: {rsvpd: true}, class: "btn btn-primary"%>
+        <div class="divider"> </div>
         <%= link_to  "Create New Event", new_user_event_url(current_user.id), class: "btn btn-success" %>
- 
+        <div class="divider"> </div>
         <%= link_to  "Logout", logout_path, class: "btn btn-danger" %>
     </div>
     <br>
     <h2>Upcoming Events: </h2>
     <%= render partial: "events/eventlist", locals: {events: @events}%>
 <%else%>
+<h3> Social Events is a rails web application that allows users to create and join events.</h3>
+<div style ="display:flex;">
     <%= button_to  "Login", login_path, method: :get, class: "btn btn-success"%>
-    <%= button_to  "Sign Up", signup_path, method: :get, class: "btn btn-warning"%>
+    <div class="divider"> </div>
+    <%= button_to  "Sign Up", signup_path, method: :get, class: "btn btn-primary"%>
+</div>
 <%end%>

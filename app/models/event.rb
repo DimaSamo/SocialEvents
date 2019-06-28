@@ -13,10 +13,13 @@ class Event < ApplicationRecord
     has_many :rsvps, dependent: :destroy
     has_many :users, through: :rsvps
     scope :upcoming, -> {where("date > ?", Time.zone.now)}
+    scope :sorted, -> {order(date: :asc)}
     # Ex:- scope :active, -> {where(:active => true)}
 
     def self.ten_closest
         Event.upcoming.order(date: :asc).limit(10)
     end
+    
+
 
 end

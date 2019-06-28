@@ -4,11 +4,31 @@
     </div>
 <%end%>
 <h1><%= @event.title %></h1>
+<h2>Event Organizer: <%= link_to  @event.user.full_name, @event.user %></h2>
 <h2>Date: <%=@event.date.strftime("%b %e, %l:%M %p")%></h2>
 <h2>Location: <%= @event.location %></h2>
+<h2>Description</h2>
 <p><%= @event.description %></p>
-<%= button_to "delete", {:controller => :events,:action => 'destroy', :id => @event.id }, :method => :delete %>
+<h3><%=@event.users.count%> Users Attending<h3>
+ <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Show Users
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+  <ul>
+    <%@event.users.each do |user|%>
+       <li> <%= link_to  "#{user.first_name} #{user.last_name}", user %> </li>
+    <%end%>
+    </ul>
+  </div>
+</div>
 <%= render partial: "rsvps/rsvpbutton1" %>
+<br>
 <% if my_resource?(@event)%>
-<h1> YES</h1>
+<div style ="display:flex;">
+<%= link_to  "Edit Event", edit_event_path(@event), class: "btn btn-dark" %>  
+<div class="divider"> </div>
+<%= button_to "Delete Event", {:controller => :events,:action => 'destroy', :id => @event.id }, :method => :delete, class: "btn btn-danger" %>
+</div>
 <%end%>

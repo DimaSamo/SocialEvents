@@ -1,2 +1,12 @@
+<%if params[:user_id] && params[:rsvpd]%>
+<h1>Events <%=@user.first_name%> is attending:</h1>
+<%elsif params[:user_id]%>
+    <h1><%=@user.first_name%>'s Events:</h1>
+<%else%>
 <h1>Events:</h1>
+<%end%>
+
+
+
+
 <%= render partial: "eventlist", locals: {events: @events}%>

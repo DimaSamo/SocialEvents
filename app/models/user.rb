@@ -7,4 +7,8 @@ class User < ApplicationRecord
     has_many :events
     has_many :rsvps
     has_many :rsvped_events, through: :rsvps, source: :event
+
+    def full_name
+        "#{self.first_name} #{self.last_name}"
+    end
 end

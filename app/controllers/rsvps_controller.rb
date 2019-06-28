@@ -14,7 +14,7 @@ class RsvpsController < ApplicationController
         @rsvp = Rsvp.find(params[:id])
         #binding.pry
         @rsvp.destroy
-        redirect_to event_path(@rsvp.event_id)
+        redirect_to root_path
         
     end
 

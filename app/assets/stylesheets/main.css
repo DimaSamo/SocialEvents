@@ -18,7 +18,12 @@
       font-family: Arial;
       line-height: 18px;
     }
-  
+    
+    .divider{
+      width:5px;
+      height:auto;
+      display:inline-block;
+  }
     .wrapper {
       background: #fff;
       -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);

@@ -9,10 +9,12 @@ class User < ApplicationRecord
     has_many :rsvped_events, through: :rsvps, source: :event
     
     def self.from_omniauth(auth)
-        binding.pry
+        
         where(email: auth.info.email).first_or_initialize do |user|
-            
+          binding.pry
           user.user_name = auth.info.name
+          user.first_name = auth.first_name
+          user.last_name = auth.last_name
           user.email = auth.info.email
           user.password = SecureRandom.hex
         end

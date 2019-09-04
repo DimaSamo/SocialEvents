@@ -10,6 +10,11 @@
 <h2>Description</h2>
 <p><%= @event.description %></p>
 <h3><%=@event.users.count%> Users Attending<h3>
+<div class="attending">
+    <ul id="attending">
+
+    </ul>
+</div>
  <button class="btn btn-primary attendees" data-id="<%=@event.id%>" type="button">
     Show Attendees
   </button>
@@ -37,10 +42,20 @@
 
 <script type="text/javascript"  charset="utf-8">
   $(function () {
-    $(".attendees").on("click", function(){
+    $(".attendees").one("click", function(){
       let id = $(this).attr("data-id");
       $.get(`/events/${id}.json`, function(data){
-        alert(data)["users"][0];
+        let rsvps = data["rsvps"]
+        rsvps.forEach(rsvp => {
+          console.log(rsvp)
+          let userId = rsvp["user_id"]
+          $.get(`/users/${userId}.json`, function(data){
+            console.log(data["first_name"])
+            $(`#attending`).append(`<li>${data["first_name"]} ${data["last_name"]} <br> Note: ${rsvp["note"]}</li>`)
+            
+          })
+            
+        });
       })
     })
   });

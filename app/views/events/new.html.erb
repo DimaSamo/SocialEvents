@@ -1,2 +1,28 @@
 <h1>Create New Event</h1>
 <%=render 'form'%>
+<div id="createdEvent">
+
+
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      event.preventDefault();
+      var values = $(this).serialize();
+      var posting = $.post('/events', values);
+      posting.done(function(data){
+          console.log(data)
+          $("#newEvent").remove();
+          $("h1").remove();
+          $("#createdEvent").append(`<h1>${data["title"]}</h1>`)
+          $("#createdEvent").append(`<h2>Event Organizer: ${data["user"]["first_name"]} ${data["user"]["last_name"]}</h1>`)
+          $("#createdEvent").append(`<h2>Date: ${data["date"].split('T')[0]}</h2>`)
+          $("#createdEvent").append(`<h2>Description:</h2> <p> ${data["description"]}</p>`)
+          $("#createdEvent").append(`<a class="btn btn-dark" href="/events/${data["id"]}/edit">Edit Event</a>`)
+      });
+    });
+  });
+</script>
+

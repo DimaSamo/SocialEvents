@@ -8,7 +8,7 @@ class EventsController < ApplicationController
         #binding.pry
         @event = Event.new(event_params)
         if @event.save
-            redirect_to event_path(@event)
+            render json: @event, status: 201
         end
 
     end

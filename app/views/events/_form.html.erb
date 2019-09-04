@@ -1,3 +1,4 @@
+<div id="newEvent">
 <%= form_for( @event) do |f| %>
 
     <%if @event.errors.any?%>
@@ -31,3 +32,4 @@
     
     <%=f.submit  class: "btn btn-success"%>
 <% end %>
+</div>

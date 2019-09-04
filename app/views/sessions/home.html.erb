@@ -11,7 +11,11 @@
     </div>
     <br>
     <h2>Upcoming Events: </h2>
-    <%= render partial: "events/eventlist", locals: {events: @events}%>
+    <div class="upcomingEvents list-group">
+        <ul class="eventList">
+        </ul>
+    </div>
+    <button class="btn btn-success js-moreEvent" data-id="23">Show Events</button>
 <%else%>
 <h3> Social Events is a rails web application that allows users to create and join events.</h3>
 <div style ="display:flex;">
@@ -41,8 +45,22 @@
             $(`#date-${id}`).text(`Date: ${data["date"]}`)
             $(`#location-${id}`).text(`Location: ${data["location"]}`)
             $(`#description-${id}`).text(`Description: ${data["description"]}`)
-            
-            
+        })
+        
+    })
+
+        $(".js-moreEvent").one("click",function(e){
+        e.stopPropagation()
+        jQuery.getJSON("/events.json", function(data){
+            console.log(data)
+            data.forEach(event => {
+                console.log(event)
+                $(`.eventList`).append(`<li class ="list-group-item">
+                <a href="/events/${event["id"]}">${event["title"]}</a>
+                <big>Location: </big> ${event["location"]},
+                <big>Date: </big> ${event["date"].split('T')[0]}
+                </li>`)
+             });
         })
         
     })

@@ -14,7 +14,12 @@
 </div>
 <div>
 <h2>Attending Upcoming Events:</h2>
-    <%= render partial: "/events/eventlist", locals: {events: @user.rsvped_events.upcoming}%>
+        <ul class = "list-group">
+        <% @user.rsvped_events.upcoming.each do |event| %>
+            <li class ="list-group-item"><%= link_to  event.title, event %>, <big>Location:</big> <%=event.location%>, <big>Date:</big> <%=event.date.strftime("%A, %d %b %Y %l:%M %p")%></li>
+            </li>
+        <%end%>
+    </ul>
 </div>
 
 <%if my_resource?(@user)%>

@@ -30,6 +30,10 @@ class EventsController < ApplicationController
     def show
         @event = Event.find(params[:id])
         @rsvp = Rsvp.new
+        respond_to do |format|
+            format.html { render :show }
+            format.json {render json: @event}
+        end
     end
 
     def destroy

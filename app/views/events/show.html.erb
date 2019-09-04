@@ -34,3 +34,9 @@
 <%= button_to "Delete Event", {:controller => :events,:action => 'destroy', :id => @event.id }, :method => :delete, class: "btn btn-danger" %>
 </div>
 <%end%>
+
+<script type="text/javascript" charset="utf-8">
+  window.onload = function () {
+    alert("hey")
+  };
+</script>

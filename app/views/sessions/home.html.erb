@@ -23,4 +23,28 @@
 
     
 </div>
+
+
+
 <%end%>
+
+<script type="text/javascript" charset="utf-8">
+  jQuery(function () {
+    $(".js-more").one("click",function(e){
+        e.stopPropagation()
+        let id = $(this).attr("data-id");
+        console.log(id)
+        console.log("/events/" + id + ".json")
+        jQuery.getJSON("/events/" + id + ".json", function(data){
+            $(`#title-${id}`).append(`<h2>Title: ${data["title"]}</h2>`)
+            $(`#organizer-${id}`).text(`Organizer: ${data["user"]["first_name"]} ` + data["user"]["last_name"])
+            $(`#date-${id}`).text(`Date: ${data["date"]}`)
+            $(`#location-${id}`).text(`Location: ${data["location"]}`)
+            $(`#description-${id}`).text(`Description: ${data["description"]}`)
+            
+            
+        })
+        
+    })
+  });
+</script>

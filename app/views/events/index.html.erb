@@ -10,3 +10,21 @@
 
 
 <%= render partial: "eventlist", locals: {events: @events}%>
+<script type="text/javascript" charset="utf-8">
+  jQuery(function () {
+    $(".js-more").on("click",function(e){
+        e.stopPropagation()
+        let id = $(this).attr("data-id");
+        console.log(id)
+        console.log("/events/" + id + ".json")
+        jQuery.getJSON("/events/" + id + ".json", function(data){
+            $(`#title-${id}`).text(`Title: ${data["title"]}`)
+            $(`#organizer-${id}`).text(`Organizer: ${data["user"]["first_name"]} ` + data["user"]["last_name"])
+            $(`#date-${id}`).text(`Date: ${data["date"]}`)
+            $(`#location-${id}`).text(`Location: ${data["location"]}`)
+            $(`#description-${id}`).text(`Description: ${data["description"]}`)
+        })
+        
+    })
+  });
+</script>

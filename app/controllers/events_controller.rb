@@ -24,6 +24,10 @@ class EventsController < ApplicationController
         else
             @events = Event.upcoming.sorted
         end
+        respond_to do |format|
+            format.html { render :index }
+            format.json { render json: @events}
+        end
        # binding.pry
     end
 

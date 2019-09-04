@@ -1,5 +1,16 @@
     <ul class = "list-group">
         <% events.each do |event| %>
-            <li class ="list-group-item"><%= link_to  event.title, event %>, <big>Location:</big> <%=event.location%>, <big>Date:</big> <%=event.date.strftime("%A, %d %b %Y %l:%M %p")%></li>
+            <li class ="list-group-item" ><%= link_to  event.title, event %> <br> 
+            
+                <div id="<%=event.id%>">
+                    <div id="title-<%=event.id%>"></div>
+                    <div id="organizer-<%=event.id%>"></div>
+                    <div id="date-<%=event.id%>"></div>
+                    <div id="location-<%=event.id%>"></div>
+                    <div id="description-<%=event.id%>"></div>
+                    <div id="url-<%=event.id%>"></div>
+                </div>
+                <button class="btn btn-primary js-more" data-id="<%=event.id%>">View Event</button>
+            </li>
         <%end%>
     </ul>

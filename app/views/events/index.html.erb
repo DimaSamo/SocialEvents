@@ -12,15 +12,31 @@
 <%= render partial: "eventlist", locals: {events: @events}%>
 <script type="text/javascript" charset="utf-8">
   jQuery(function () {
+
+    class User{
+    constructor (json){
+        this.id = json["id"]
+        this.first_name = json["first_name"]
+        this.last_name = json["last_name"]
+        this.bio = json["bio"]
+        this.email = json["email"]
+    }
+
+    full_name(){
+        return `${this.first_name} ${this.last_name}`
+    }
+}
+
+
+
     $(".js-more").on("click",function(e){
         e.stopPropagation()
         let id = $(this).attr("data-id");
-        console.log(id)
-        console.log("/events/" + id + ".json")
         jQuery.getJSON("/events/" + id + ".json", function(data){
+            let organizer = new User(data["user"])
             $(`#title-${id}`).text(`Title: ${data["title"]}`)
-            $(`#organizer-${id}`).text(`Organizer: ${data["user"]["first_name"]} ` + data["user"]["last_name"])
-            $(`#date-${id}`).text(`Date: ${data["date"]}`)
+            $(`#organizer-${id}`).text(`Organizer: ${organizer.full_name()} `)
+            $(`#date-${id}`).text(`Date: ${data["date"].split('T')[0]}`)
             $(`#location-${id}`).text(`Location: ${data["location"]}`)
             $(`#description-${id}`).text(`Description: ${data["description"]}`)
         })

@@ -2,6 +2,7 @@ class EventSerializer < ActiveModel::Serializer
   attributes :id, :title, :description, :date, :location
   belongs_to :user, serializer: EventUserSerializer
   has_many :users, through: :rsvps, serializer: EventUsersSerializer
+  has_many :rsvps
 
   # create_table "events", force: :cascade do |t|
   #   t.string "title"

@@ -10,8 +10,8 @@
 <h2>Description</h2>
 <p><%= @event.description %></p>
 <h3><%=@event.users.count%> Users Attending<h3>
- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Show Users
+ <button class="btn btn-primary attendees" data-id="<%=@event.id%>" type="button">
+    Show Attendees
   </button>
 </p>
 <div class="collapse" id="collapseExample">
@@ -37,6 +37,11 @@
 
 <script type="text/javascript"  charset="utf-8">
   $(function () {
-    console.log($(".js-more"))
+    $(".attendees").on("click", function(){
+      let id = $(this).attr("data-id");
+      $.get(`/events/${id}.json`, function(data){
+        alert(data)["users"][0];
+      })
+    })
   });
 </script>

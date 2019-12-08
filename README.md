@@ -1,6 +1,7 @@
 # SocialEvents
 
 Social Events is a Ruby on Rails web application that allows a user to create and sign up to social events and keep track of people who are attending them.
+Demo: https://www.youtube.com/watch?v=znzBCmc35KU
 
 ## Installation
   Enter the following line in your terminal:
